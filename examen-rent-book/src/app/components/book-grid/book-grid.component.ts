@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Item } from 'src/app/interfaces/book-response';
 
 @Component({
   selector: 'app-book-grid',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book-grid.component.css']
 })
 export class BookGridComponent implements OnInit {
+
+  @Input() books: Item[] = [];
 
   constructor() { }
 

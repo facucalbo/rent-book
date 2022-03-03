@@ -1,1 +1,12 @@
-<p>book-grid works!</p>
+
+<div class="row">
+    <div class="col"
+        *ngFor="let book of books">
+
+        <div>
+            <!-- <img [src]="book.volumeInfo.imageLinks.thumbnail | books" alt=""> -->
+            <img src="http://books.google.com/books/content?id=p3QQjwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" alt="">
+        </div>
+
+    </div>
+</div>

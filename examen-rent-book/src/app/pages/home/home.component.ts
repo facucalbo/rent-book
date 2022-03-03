@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Item, VolumeInfo } from 'src/app/interfaces/book-response';
+import { BookService } from 'src/app/services/book-service.service';
+
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public books: Item[] = [];
+  public param: string = '';
+  public pos = 0;
+
+  constructor( private bookService: BookService ) { }
 
   ngOnInit(): void {
   }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    this.pos = (document.documentElement.scrollTop || document.body.scrollTop) + 1500;
+    const max = ( document.documentElement.scrollHeight || document.body.scrollHeight)
+
+    if ( this.pos > max ){
+      this.bookService.searchBook( this.param )
+      .subscribe( books => {
+        this.books.push( ...books )
+      })
+    } 
+  }
+
+  searchBook(selectedBook: string) {
+    this.param = selectedBook;
+    this.bookService.searchBook( selectedBook )
+    .subscribe( books => {
+      this.books = books
+    })
+  }
+
+
 
 }
