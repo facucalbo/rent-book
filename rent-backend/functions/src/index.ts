@@ -24,28 +24,62 @@ const app = express();
 app.use( cors({origin: true})); // con cors le damos acceso a otros dominio para acceder a nuestro servicio (firebase), esto es para que no tire error al hacer la peticion
 
 // GET request
-app.get('/user', async (req, res) => {
-  const userRef = db.collection('user');
+app.get('/user/:dni', async (req, res) => {
+  const email = req.params.dni;
+  const userRef = db.collection('user').doc( email );
   const docsSnap = await userRef.get();
-  const users = docsSnap.docs.map( (d) => d.data());
+  const user = docsSnap.data();
 
-  res.json( users );
+  if ( !docsSnap.exists ) {
+    res.status(404).json({
+      message: 'User not exists'
+    })
+  } else {
+    res.status(200).json( user )
+  }
+
+  return res.status(200).json( user );
 });
 
 // POST request
-app.post('/librosIngresados/:id', async (req, res) => {
-  const id = req.params.id;
-  const bookRef = db.collection('librosIngresados').doc( id );
-  const bookSnap = await bookRef.get();
+app.post('/user/:email', async (req, res) => {
+  const email = req.params.email;
+  const userRef = db.collection('user').doc( email );
+  const userSnap = await userRef.get();
 
-  if ( !bookSnap.exists ) {
+  if ( !userSnap.exists ) {
     res.status(404).json({
       ok: false,
-      message: `Book id: ${id} not exists`,
+      message: `Book id: ${email} not exists`,
     });
   } else {
     res.json('Book exists');
   }
+});
+
+// test post method
+app.post('/user/add', async (req, res) => {
+
+  const userRef = db.collection('user').doc();
+
+  const data = {
+    apellido: 'messi',
+    dni: '222211113',
+    id: userRef.id,
+    localidad: 'rosario',
+    mail: 'messi@mgial.com',
+    name: 'lionel',
+    telefono: '123123123',
+    username: 'leomessi'
+  }
+
+  const request = await userRef.set(data);
+
+  res.json({
+    ok: true,
+    message: 'Request ok',
+    request
+  })
 });
 
 // server running

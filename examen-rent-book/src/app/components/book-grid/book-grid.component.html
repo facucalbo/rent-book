@@ -5,10 +5,11 @@
 
         <div class="preview" data-bs-toggle="modal" data-bs-target="#exampleModal" 
         (click)="openModal(bookModal)">
-            <img [src]="book.volumeInfo.imageLinks!.thumbnail | book" alt="" class="cover">
+            <img [src]="book.volumeInfo.imageLinks!.thumbnail | book" alt="" class="cover pointer">
             <!-- <img src="http://books.google.com/books/content?id=p3QQjwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" alt=""> -->
         </div>
 
+        <!-- MODAL -->
         <ng-template #bookModal let-close="close" let-dismiss="dismiss">
             <div class="w-75" style="margin: auto;">
                 <div class="modal-header">

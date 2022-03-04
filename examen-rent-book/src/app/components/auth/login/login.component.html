@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="container-xl w-50 m-auto mt-5 border p-5">
+    <form autocomplete="off" [formGroup]="forma" (ngSubmit)="save()" >
+        <div class="">
+            <div class="mb-3">
+                <h3> Create your account </h3>
+            </div>
+           
+            <div class="row mb-3">
+                <div class="col-12 col-md-3">
+                    <label class="col-form-label">E-mail</label>
+                </div>
+                <div class="col">
+                    <input type="email" class="form-control" placeholder="E-mail"
+                        formControlName="email"
+                        [class.is-invalid]="noValid('email')">
+                    <small *ngIf="noValid('email')" class="text-danger">Invalid email</small>
+                </div>
+            </div>
+    
+            <div class="row mb-3">
+                <div class="col-12 col-md-3">
+                    <label class="col-form-label">Username</label>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Username"
+                        formControlName="username"
+                        [class.is-invalid]="noValid('username')">
+                    <small *ngIf="noValid('username')" class="text-danger">Invalid username</small>
+                </div>
+            </div>
+
+            <div class="d-grid gap-5 mb-3">
+                <button type="submit" class="btn btn-outline-primary btn-block"> Continuar </button>
+            </div>
+    
+            <div>
+             <a (click)="toRegisterPage()" class="text-decoration-none link-danger pointer">Have an account, Log In!</a> 
+            </div>
+        </div>
+    </form>
+</div>

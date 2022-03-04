@@ -98,6 +98,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "examen-rent-book:build:production",
+            "firebaseProject": "rental-book-daa06",
+            "firebaseHostingSite": "rental-book-daa06"
+          }
         }
       }
     }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 const routes: Routes = [
   {
@@ -13,8 +15,8 @@ const routes: Routes = [
     path: 'auth',
     component: AuthComponent,
     children: [
-      { path: 'register', redirectTo: '/auth/register' },
-      { path: 'login', redirectTo: '/auth/login' }
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent }
     ]
   },
   {

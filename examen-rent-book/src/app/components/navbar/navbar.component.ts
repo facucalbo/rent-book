@@ -15,12 +15,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  searchBook() {
-    this.router.navigate(['search'])
-  }
-
-  authPage( param: string ) {
-    this.router.navigate([`auth`])
+  authPage( type: string ) {
+    this.router.navigate(['/auth', type])
   }
   
 
