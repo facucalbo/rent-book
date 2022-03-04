@@ -4,14 +4,18 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BookGridComponent } from './book-grid/book-grid.component';
 import { PipesModule } from '../pipes/pipes.module';
 
-import {NgbModal, ModalDismissReasons, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    BookGridComponent
+    BookGridComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   exports: [
     NavbarComponent,

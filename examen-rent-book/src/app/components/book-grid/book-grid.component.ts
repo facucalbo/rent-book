@@ -18,7 +18,11 @@ export class BookGridComponent implements OnInit {
   }
 
   openModal( modal: any ){
-    this.bookModal.open( modal, {size: 'xl' } );
+    this.bookModal.open( modal, {size: 'xl', animation: true } );
+  }
+
+  validateStock(){
+
   }
 
 
