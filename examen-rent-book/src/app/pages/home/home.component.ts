@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Item, VolumeInfo } from 'src/app/interfaces/book-response';
+import { Item } from 'src/app/interfaces/book-response';
 import { BookService } from 'src/app/services/book-service.service';
 
 
@@ -28,17 +28,26 @@ export class HomeComponent implements OnInit {
     if ( this.pos > max ){
       this.bookService.searchBook( this.param )
       .subscribe( books => {
-        this.books.push( ...books )
+        this.books.push( ...books.filter( b => b.volumeInfo.imageLinks ) )
       })
     } 
   }
 
   searchBook(selectedBook: string) {
+
+    this.bookService.resetIndex();
+
     this.param = selectedBook;
     this.bookService.searchBook( selectedBook )
     .subscribe( books => {
-      this.books = books
+      this.books = books.filter( b => b.volumeInfo.imageLinks )
+      console.log(books.filter( b => b.volumeInfo.imageLinks));
+      console.log(books);
     })
+  }
+
+  resetBookArray(){
+    this.books = [];
   }
 
 

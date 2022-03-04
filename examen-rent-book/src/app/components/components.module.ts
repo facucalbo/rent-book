@@ -4,6 +4,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BookGridComponent } from './book-grid/book-grid.component';
 import { PipesModule } from '../pipes/pipes.module';
 
+import {NgbModal, ModalDismissReasons, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @NgModule({

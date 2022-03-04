@@ -10,19 +10,25 @@
         <div class="col-8">
             
             <form class="d-flex">
-                <input #txtSearch class="form-control me-2" placeholder="Search book"
-                       (keyup.enter)="searchBook(txtSearch.value)">
+                <input 
+                    #txtSearch 
+                    class="form-control me-2" placeholder="Search book"
+                    type="search"
+                    aria-label="Search"
+                    (keyup.enter)="searchBook(txtSearch.value)"
+                >
 
                 <button class="btn btn-primary"
-                        (click)="searchBook(txtSearch.value)">
-                        
+                        (click)="searchBook(txtSearch.value)"
+                        type="button">
                     Search!
                 </button>
-                <!-- podes hacer un ngif y al onclick se cargue el array books (sea hace el request) -->
             </form>
     
         </div>
     </div>
-</section>
+</section>  
 
-<app-book-grid [books]="this.books"></app-book-grid>
+<div class="mt-5">
+    <app-book-grid [books]="this.books"></app-book-grid>
+</div>

@@ -14,24 +14,26 @@ export class BookService {
 
   get params() {
     return{
-      startIndex: 0,
+      startIndex: this.index,
       maxResults: 20,
-      index: this.index
     }
   }
 
   constructor( private http: HttpClient) { }
 
   searchBook( textParam: string ): Observable<Item[]> {
-
     const params = { ...this.params, q: textParam}
     
     return this.http.get<BookResponse>(`${ this.baseUrl }`, { params })
       .pipe(
         map( resp => resp.items ),
         tap( () => {
-          this.params.index += 20;
+          this.index += 20;
         })
       )
+  }
+
+  resetIndex() {
+    this.index = 0;
   }
 }
