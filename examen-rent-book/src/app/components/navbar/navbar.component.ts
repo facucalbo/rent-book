@@ -19,4 +19,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['search'])
   }
 
+  authPage( param: string ) {
+    this.router.navigate([`auth`])
+  }
+  
+
 }
