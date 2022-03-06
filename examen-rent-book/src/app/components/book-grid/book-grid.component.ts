@@ -53,6 +53,7 @@ export class BookGridComponent implements OnInit {
 
           // uso email para la tabla prestamo
           this.fbService.lending( isbn10, u?.email! )
+          console.log('Prestamo solicitado');
         });
       } else{
         console.log(' No se pudo pedir prestamo porque ya 3 personas lo tienen. ');
