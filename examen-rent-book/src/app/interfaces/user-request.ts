@@ -1,6 +1,6 @@
 export interface UserPostRequest {
     id:          string,
-    user:        string,
+    name:        string,
     password:    string,
     surname:     string,
     username:    string,

@@ -14,6 +14,8 @@ export class LoginComponent {
     this.createListener();
    }
 
+   incorrect: boolean = false;
+
   forma: FormGroup = this.fb.group({
     email: ['facundo@gmail.com', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]],
     password: ['facundo123', Validators.required]
@@ -38,8 +40,8 @@ export class LoginComponent {
       })
       return ;
     }
-
     this.auth.logUser(this.forma.value);
+    
     this.forma.reset();
   }
 }

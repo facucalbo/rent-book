@@ -29,9 +29,13 @@
                 </div>
             </div>
 
+            <span class="text-center text-danger" *ngIf="!incorrect"></span>
+
             <div class="d-grid gap-5 mb-3">
                 <button type="submit" class="btn btn-outline-primary btn-block"> Continuar </button>
             </div>
+            
+            
     
             <div>
              <a (click)="toRegisterPage()" class="text-decoration-none link-danger pointer">Have an account, Log In!</a> 

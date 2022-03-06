@@ -12,7 +12,8 @@ export const environment = {
     authDomain: 'rental-book-daa06.firebaseapp.com',
     messagingSenderId: '17784023312',
   },
-  production: false
+  production: false,
+  url: 'http://localhost:5000/rental-book-daa06/us-central1'
 };
 
 /*

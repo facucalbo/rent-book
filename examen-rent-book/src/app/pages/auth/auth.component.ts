@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UserPostRequest } from 'src/app/interfaces/user-request';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-auth',
@@ -11,18 +12,19 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthComponent implements OnInit {
 
+  constructor( private router: Router, private db: AngularFirestore, private auth: AuthService, private dataService: DataService) { }
 
-  constructor( private router: Router, private db: AngularFirestore, private auth: AuthService) { }
+  private invalid: boolean = false;
 
    async logUser( data: UserPostRequest) {
     const {email, password} = data;
   
     await this.auth.login( email, password ).then( res => {
-      console.log(" logged: ", res);
+      console.log(res);
     });
-    
-    console.log(this.loggedUser());
-    
+
+    this.dataService.user = data;
+
     this.toHome();
    }
 
@@ -33,15 +35,11 @@ export class AuthComponent implements OnInit {
       console.log(" registered: ", res);
     });
 
-    console.log( await this.loggedUser());
-
     this.postUser( data );
-
     this.toHome();
    }
 
    async postUser( data: UserPostRequest ) {
-
       const userRef = this.db.collection('user').doc();
       const userData = { ...data, id: userRef.ref.id }
   

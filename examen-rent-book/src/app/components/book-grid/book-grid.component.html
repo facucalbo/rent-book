@@ -30,7 +30,17 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" (click)="close('')">Cancel</button>
-                    <button type="button" class="btn btn-danger" (click)="validateStock()">Ok</button>
+                    <!-- <button type="button" class="btn btn-danger" 
+                        (click)="verifPrestados( book.id )"
+                        *ngIf="!available">
+                        Check availability
+                    </button> -->
+                    
+                    <button type="button" class="btn btn-danger" 
+                        (click)="rentBook(book.volumeInfo.industryIdentifiers, book.id )">
+                        <!-- *ngIf="available"> -->
+                        Rent book now!
+                    </button>
                 </div>
             </div>
         </ng-template>
