@@ -6,6 +6,7 @@ import * as admin from "firebase-admin";
 // import express para correr un servidor express
 import * as express from 'express';
 import * as cors from 'cors';
+import { UserRecordMetadata } from "firebase-functions/v1/auth";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const serviceAccount = require("./serviceAccountKey.json");
@@ -37,8 +38,6 @@ app.get('/user/:dni', async (req, res) => {
   } else {
     res.status(200).json( user )
   }
-
-  return res.status(200).json( user );
 });
 
 // POST request
@@ -46,14 +45,18 @@ app.post('/user/:email', async (req, res) => {
   const email = req.params.email;
   const userRef = db.collection('user').doc( email );
   const userSnap = await userRef.get();
+  const userData = userSnap.data();
 
   if ( !userSnap.exists ) {
     res.status(404).json({
       ok: false,
-      message: `Book id: ${email} not exists`,
+      message: `Book id: ${email} not exists`
     });
   } else {
-    res.json('Book exists');
+    res.status(200).json({
+      ok: true,
+      userData: userData
+    });
   }
 });
 

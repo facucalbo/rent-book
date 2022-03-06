@@ -16,13 +16,14 @@ export class RegisterComponent {
    }
 
   public forma: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-    surname: ['', [Validators.required, Validators.minLength(3)]],
-    username: ['', [Validators.required, Validators.minLength(3)]],
-    dni: ['', [Validators.required, Validators.minLength(6)]],
-    email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]],
-    phone: ['', [Validators.required, Validators.minLength(4)]],
-    locality: ['', [Validators.required, Validators.minLength(3)]]
+    name: ['facundo', [Validators.required, Validators.minLength(3)]],
+    surname: ['calbo', [Validators.required, Validators.minLength(3)]],
+    username: ['facucalbo', [Validators.required, Validators.minLength(3)]],
+    dni: ['4411112222', [Validators.required, Validators.minLength(6)]],
+    email: ['facundo@gmail.com', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]],
+    password: [ 'facundo123', [Validators.required, Validators.minLength(8)]],
+    phone: ['44221234', [Validators.required, Validators.minLength(4)]],
+    locality: ['ciudad', [Validators.required, Validators.minLength(3)]]
   })
 
   createListener() {
@@ -46,7 +47,7 @@ export class RegisterComponent {
       return ;
     }
 
-    this.auth.postUser(this.forma.value);
+    this.auth.registerUser(this.forma.value);
     this.forma.reset();
   }
 

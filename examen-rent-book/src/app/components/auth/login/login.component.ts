@@ -10,11 +10,13 @@ import { AuthComponent } from 'src/app/pages/auth/auth.component';
 })
 export class LoginComponent {
 
-  constructor(public fb: FormBuilder, private router: Router, private auth: AuthComponent) { }
+  constructor(public fb: FormBuilder, private router: Router, private auth: AuthComponent) {
+    this.createListener();
+   }
 
   forma: FormGroup = this.fb.group({
-    email: ['', Validators.required],
-    username: ['', Validators.required]
+    email: ['facundo@gmail.com', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]],
+    password: ['facundo123', Validators.required]
   })
 
   createListener() {
@@ -30,7 +32,6 @@ export class LoginComponent {
   }
   
   save() {
-
     if ( this.forma.invalid ) {
       Object.values( this.forma.controls ).forEach( control => {
         control.markAsTouched();
@@ -38,10 +39,7 @@ export class LoginComponent {
       return ;
     }
 
-    this.auth.postUser(this.forma.value);
-    
-    console.log( this.forma.value );
-    
+    this.auth.logUser(this.forma.value);
     this.forma.reset();
   }
 }

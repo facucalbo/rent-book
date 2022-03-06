@@ -15,10 +15,19 @@
           <a class="nav-link" href="#">Link</a>
         </li>
       </ul>
-      <form class="d-flex">
+      <form class="d-flex" *ngIf="!(loggedUser|async)">
         <button class="btn btn-outline-secondary me-md-1" type="button" (click)="authPage('register')">Register</button>
         <button class="btn btn-primary" type="button" (click)="authPage('login')">Login</button>
       </form>
+
+      <div *ngIf="loggedUser|async as user">
+        <a class="navbar-brand">
+          Logged as: <span class="text-primary"> {{ user.email }} </span>
+        </a>
+        <button class="btn btn-danger me-md-1" type="button" (click)="logOut()">
+          Log Out
+        </button>
+      </div>
     </div>
   </div>
 </nav>

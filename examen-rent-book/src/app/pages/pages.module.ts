@@ -15,7 +15,7 @@ import { AppRoutingModule } from '../app-routing.module';
   imports: [
     CommonModule,
     ComponentsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ]
 })
 export class PagesModule { }
