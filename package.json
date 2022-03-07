@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "@firebase/auth": "^0.19.9",
     "cors": "^2.8.5",
     "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12"
   }
 }

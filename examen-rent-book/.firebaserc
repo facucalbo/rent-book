@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "rental-book-daa06": {
+      "hosting": {
+        "examen-rent-book": [
+          "rental-book-daa06"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "rental-book-daa06"
+  }
+}

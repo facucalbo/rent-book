@@ -1,0 +1,53 @@
+
+<div class="row">
+    <div class="col-6 col-sm-4 col-md-3 col-xl-2 text-center mt-2"
+        *ngFor="let book of books; index as i">
+
+        <div class="preview" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+        (click)="openModal(bookModal)">
+            <img [src]="book.volumeInfo.imageLinks!.thumbnail | book" alt="" class="cover pointer">
+            <!-- <img src="http://books.google.com/books/content?id=p3QQjwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" alt=""> -->
+        </div>
+
+        <!-- MODAL -->
+        <ng-template #bookModal let-close="close" let-dismiss="dismiss">
+            <div class="w-75" style="margin: auto;">
+                <div class="modal-header">
+                    <h4>{{ book.volumeInfo.title }}</h4>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="close('')"></button>
+                    <!-- <button type="button" class="btn-close" aria-describedby="modal-title" (click)="activeModal.dismiss('Cross click')"></button> -->
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col cover-page">
+                            <img [src]="book.volumeInfo.imageLinks!.thumbnail" alt="">
+                        </div>
+                        
+                        <div class="col description">
+                            {{ book.volumeInfo.description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" (click)="close('')">Cancel</button>
+                    <!-- <button type="button" class="btn btn-danger" 
+                        (click)="verifPrestados( book.id )"
+                        *ngIf="!available">
+                        Check availability
+                    </button> -->
+                    
+                    <button type="button" class="btn btn-danger" 
+                        (click)="rentBook(book.volumeInfo.industryIdentifiers, book.id )">
+                        <!-- *ngIf="available"> -->
+                        Rent book now!
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+
+        <div class="mt-1">
+            <h3> {{ book.volumeInfo.title }} </h3>
+        </div>
+
+    </div>
+</div>
