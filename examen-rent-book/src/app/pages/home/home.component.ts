@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
       .subscribe( books => {
         this.books.push( ...books.filter( b => b.volumeInfo.imageLinks ) )
       })
-    } 
+    }
   }
 
   searchBook(selectedBook: string) {
@@ -41,8 +41,7 @@ export class HomeComponent implements OnInit {
     this.bookService.searchBook( selectedBook )
     .subscribe( books => {
       this.books = books.filter( b => b.volumeInfo.imageLinks )
-      console.log(books.filter( b => b.volumeInfo.imageLinks));
-      console.log(books);
+      console.log(this.books);
     })
   }
 

@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {NgbModal, ModalDismissReasons, NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 
@@ -16,18 +17,21 @@ import { RegisterComponent } from './auth/register/register.component';
     NavbarComponent,
     BookGridComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ModalComponent
   ],
   exports: [
     NavbarComponent,
     BookGridComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
     PipesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ]
 })
 export class ComponentsModule { }

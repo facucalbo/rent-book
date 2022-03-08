@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BooksPipe } from './books.pipe';
+import { IsbnPipe } from './isbn.pipe';
 
 
 
 @NgModule({
   declarations: [
-    BooksPipe
+    BooksPipe,
+    IsbnPipe
   ],
   exports: [
     BooksPipe

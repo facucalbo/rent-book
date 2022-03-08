@@ -17,7 +17,7 @@ export class FireBookService {
     return this.http.get<BookInfo>(`${ environment.url }/api/librosIngresados/${ id }`);
   }
 
-  lending( isbn: string, email: string ) {
+  lending( isbn: string, email: string, id: string ) {
 
     this.joinLending( isbn, email );
 
@@ -25,7 +25,6 @@ export class FireBookService {
   }
 
   rentBook( isbn: string, id: string ): Observable<BookStatus> {
-
     this.joinBook( isbn, id )
     return this.http.post<BookStatus>(`${ environment.url }/api/librosIngresados/${ id }`, {});
   }
@@ -36,8 +35,8 @@ export class FireBookService {
     const bookSnap = await bookRef.get();
     let exist;
     bookSnap.subscribe( b => exist = b.exists );
-    
-    
+
+
     if ( !exist ) {
       bookRef.set({
         isbn: isbn,

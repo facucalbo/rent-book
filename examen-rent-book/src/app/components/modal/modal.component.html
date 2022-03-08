@@ -1,0 +1,32 @@
+
+  <div class="w-75" style="margin: auto;">
+      <div class="modal-header">
+          <h4>{{ book?.volumeInfo?.title }}</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+              <div class="col cover-page">
+                  <img [src]="book?.volumeInfo?.imageLinks!.thumbnail" alt="">
+              </div>
+
+              <div class="col description">
+                  {{ book?.volumeInfo?.description }}
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="closeModal()">Cancel</button>
+          <!-- <button type="button" class="btn btn-danger"
+              (click)="verifPrestados( book.id )">
+              *ngIf="!available"
+              Check availability
+          </button> -->
+
+          <button type="button" class="btn btn-danger"
+              (click)="rentBook(book?.volumeInfo!.industryIdentifiers, book!.id)">
+              <!-- *ngIf="available"> -->
+              Rent book now!
+          </button>
+      </div>
+  </div>
